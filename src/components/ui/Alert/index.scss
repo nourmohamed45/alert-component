@@ -1,0 +1,74 @@
+// Error Color (more intense red for urgency)
+$ErrorBorderColor: rgba(220, 53, 69, 0.6);
+$errorBg: rgba(248, 215, 218, 0.7);
+$errorColor: #a71d2a;
+
+// Success Color (brighter green for positivity)
+$successBorderColor: rgba(40, 167, 69, 0.6);
+$successBg: rgba(212, 237, 218, 0.7);
+$successColor: #155724;
+
+// Warning Color (softer yellow for attention without harshness)
+$warningBorderColor: rgba(255, 193, 7, 0.6);
+$warningBg: rgba(255, 243, 205, 0.7);
+$warningColor: #856404;
+
+// Info Color (calm blue for information)
+$infoBorderColor: rgba(23, 162, 184, 0.6);
+$infoBg: rgba(209, 231, 235, 0.7);
+$infoColor: #0c5460;
+
+// Default Color (neutral gray for balance)
+$defaultBorderColor: rgba(108, 117, 125, 0.6);
+$defaultBg: rgba(248, 249, 250, 0.7);
+$defaultColor: #343a40;
+
+@mixin alert($name, $bg, $color, $borderColor) {
+  .alert_#{$name} {
+    border: 2px dotted $borderColor;
+    padding-inline: 1.2rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: $bg;
+    color: $color;
+    width: 20rem;
+    max-width: 20rem;
+    a {
+      color: #007bff; /* Primary blue color */
+      font-weight: bold; /* Makes the link stand out */
+      transition: color 0.3s ease-in-out; /* Smooth hover transition */
+      text-decoration: underline; /* Adds an underline on hover */
+
+      &:hover {
+        color: #0056b3; /* Darker shade on hover for emphasis */
+      }
+    }
+    .alert_header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-block: 1rem;
+      .alert_header_left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .close_icon {
+        cursor: pointer;
+      }
+    }
+    p {
+      margin-block: 1rem;
+    }
+  }
+}
+
+@include alert(danger, $errorBg, $errorColor, $ErrorBorderColor);
+
+@include alert(success, $successBg, $successColor, $successBorderColor);
+
+@include alert(warning, $warningBg, $warningColor, $warningBorderColor);
+
+@include alert(info, $infoBg, $infoColor, $infoBorderColor);
+
+@include alert(default, $defaultBg, $defaultColor, $defaultBorderColor);
